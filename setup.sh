@@ -43,6 +43,11 @@ cd $HOME                                                                        
   && mv apache-tomcat-$TOMCAT_VER $HOME/tomcat                                                                    \
   && rm apache-tomcat-$TOMCAT_VER.tar.gz
 
+# pulling jenkins image from docker hub.
+docker pull balajipothula/jenkins:latest
+
+
+
 
  
   
