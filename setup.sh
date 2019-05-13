@@ -6,9 +6,6 @@
 
 # Note: Please run this script with sudo privilage.
 
-# setting maven version.
-readonly TOMCAT_VER=8.5.40
-
 # uninstalling old versions of docker.
 apt -y remove docker docker-engine docker.io
 
@@ -36,18 +33,8 @@ apt update
 # installing latest version of docker ce.
 apt -y install docker-ce docker-ce-cli containerd.io
 
-# downloading and setting tomcat server.
-cd $HOME                                                                                                          \
-  && wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v$TOMCAT_VER/bin/apache-tomcat-$TOMCAT_VER.tar.gz \
-  && tar xzf apache-tomcat-$TOMCAT_VER.tar.gz                                                                     \
-  && mv apache-tomcat-$TOMCAT_VER $HOME/tomcat                                                                    \
-  && rm apache-tomcat-$TOMCAT_VER.tar.gz
+# extracting tomcat tar ball and removing.
+tar xzf $HOME/jenkins/tomcat.tar.gz -C $HOME/jenkins && rm $HOME/jenkins/tomcat.tar.gz
 
 # pulling jenkins image from docker hub.
 docker pull balajipothula/jenkins:latest
-
-
-
-
- 
-  
