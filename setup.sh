@@ -45,3 +45,6 @@ docker pull balajipothula/jenkins:latest
 # running docker container with name(--name) "jenkins" as daemon(-d),
 # stdin(-i) with volume(-v) "tomcat" on port(-p) "8080".
 docker run --name jenkins -d -i -p 8080:8080 --privileged -v $HOME/jenkins/tomcat:/tomcat balajipothula/jenkins:latest sh
+
+# executing docker container by name with stdin(-i), starting tomcat server.
+docker exec -i jenkins /tomcat/bin/startup.sh
