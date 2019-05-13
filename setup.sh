@@ -50,5 +50,4 @@ docker run --name jenkins -d -i -p 8080:8080 --privileged -v $HOME/jenkins/tomca
 docker exec -i jenkins /tomcat/bin/startup.sh
 
 # jenkins initial admin password.
-docker exec -i jenkins cat /root/.jenkins/secrets/initialAdminPassword
-
+##docker exec -i jenkins cat /root/.jenkins/secrets/initialAdminPassword
