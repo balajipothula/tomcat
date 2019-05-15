@@ -34,7 +34,7 @@ apt update
 apt -y install docker-ce docker-ce-cli containerd.io
 
 # extracting tomcat tar ball and removing.
-tar xzf $HOME/jenkins/tomcat.tar.gz -C $HOME/jenkins && rm $HOME/jenkins/tomcat.tar.gz
+tar xzf $HOME/jenkins-docker/tomcat.tar.gz -C $HOME/jenkins && rm $HOME/jenkins-docker/tomcat.tar.gz
 
 # downloading jenkins.war
 wget https://updates.jenkins-ci.org/latest/jenkins.war -O $HOME/jenkins/tomcat/webapps/ROOT.war
