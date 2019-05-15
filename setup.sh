@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Author      : BALAJI POTHULA <balaji.pothula@techie.com>,
-# Date        : 31 August 2016,
-# Description : Installing tomcat Docker image on Ubuntu.
+# Date        : 09 May 2019,
+# Description : Installing openjdk, maven, tomcat, jenkins on Ubuntu.
 
 # Note: Please run this script with sudo privilage.
 
-# uninstalling old versions of docker.
-apt -y remove docker docker-engine docker.io
+# setting maven version.
+readonly MVN_VER=3.6.1
 
 # updating packages index.
 apt update
@@ -15,39 +15,22 @@ apt update
 # upgrading packages.
 DEBIAN_FRONTEND=noninteractive apt -y upgrade
 
-# installing packages to allow apt to use repository over https.
-apt -y install apt-transport-https \
-               ca-certificates     \
-               curl                \
-               software-properties-common
+# installing openjdk8.
+# maven3.3+ require jdk1.7+
+apt install -y openjdk-8-jdk
 
-# adding docker official gpg key.
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-
-# setting up the stable docker repository.
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-# updating apt package index.
-apt update
-
-# installing latest version of docker ce.
-apt -y install docker-ce docker-ce-cli containerd.io
+cd $HOME                                                                                                         \
+  && wget http://mirrors.estointernet.in/apache/maven/maven-3/$MVN_VER/binaries/apache-maven-$MVN_VER-bin.tar.gz \
+  && tar xzf apache-maven-$MVN_VER-bin.tar.gz                                                                    \
+  && mv apache-maven-$MVN_VER $HOME/maven                                                                        \
+  && ln -s $HOME/maven/bin/mvn /usr/bin/mvn                                                                      \
+  && rm apache-maven-$MVN_VER-bin.tar.gz
 
 # extracting tomcat tar ball and removing.
-tar xzf $HOME/jenkins-docker/tomcat.tar.gz -C $HOME/jenkins && rm $HOME/jenkins-docker/tomcat.tar.gz
+tar xzf $HOME/jenkins/tomcat.tar.gz -C $HOME/jenkins && rm $HOME/jenkins/tomcat.tar.gz
 
 # downloading jenkins.war
-wget https://updates.jenkins-ci.org/latest/jenkins.war -O $HOME/jenkins-docker/tomcat/webapps/ROOT.war
+wget https://updates.jenkins-ci.org/latest/jenkins.war -O $HOME/jenkins/tomcat/webapps/ROOT.war
 
-# pulling jenkins image from docker hub.
-docker pull balajipothula/jenkins:latest
-
-# running docker container with name(--name) "jenkins" as daemon(-d),
-# stdin(-i) with volume(-v) "tomcat" on port(-p) "8080".
-docker run --name jenkins -d -i -p 8080:8080 --privileged -v $HOME/jenkins-docker/tomcat:/tomcat balajipothula/jenkins:latest sh
-
-# executing docker container by name with stdin(-i), starting tomcat server.
-docker exec -i jenkins /tomcat/bin/startup.sh
-
-# jenkins initial admin password.
-##docker exec -i jenkins cat /root/.jenkins/secrets/initialAdminPassword
+# starting tomcat server
+sh $HOME/jenkins/tomcat/bin/startup.sh
