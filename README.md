@@ -3,7 +3,7 @@
 ### Author: BALAJI POTHULA <*balaji.pothula@techie.com*>
 
 #### cloning jenkins from github.
-git clone https://github.com/balajipothula/jenkins.git
+git clone https://github.com/balajipothula/jenkins-docker.git
 
 ##### tomcat webapp setup.
-sudo sh $HOME/jenkins/setup.sh
+sudo sh $HOME/jenkins-docker/setup.sh
