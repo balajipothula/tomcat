@@ -25,4 +25,4 @@ wget https://updates.jenkins-ci.org/latest/jenkins.war -O $HOME/jenkins/tomcat/w
 sh $HOME/jenkins/tomcat/bin/startup.sh
 
 # jenkins unlock initial admin password.
-##cat /root/.jenkins/secrets/initialAdminPassword
+##sudo cat /root/.jenkins/secrets/initialAdminPassword
