@@ -2,7 +2,7 @@
 
 # Author      : BALAJI POTHULA <balaji.pothula@techie.com>,
 # Date        : 09 May 2019,
-# Description : Installing openjdk, maven, tomcat, jenkins on Ubuntu.
+# Description : Installing openjdk, tomcat, jenkins on Ubuntu.
 
 # Note: Please run this script with sudo privilage.
 
