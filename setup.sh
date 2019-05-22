@@ -13,16 +13,13 @@ apt update
 DEBIAN_FRONTEND=noninteractive apt -y upgrade
 
 # installing openjdk8.
-apt install -y openjdk-8-jdk
-
-# extracting tomcat tar ball and removing.
-tar xzf $HOME/jenkins/tomcat.tar.gz -C $HOME/jenkins && rm $HOME/jenkins/tomcat.tar.gz
+apt install -y openjdk-8-jre
 
 # downloading jenkins.war
-wget https://updates.jenkins-ci.org/latest/jenkins.war -O $HOME/jenkins/tomcat/webapps/ROOT.war
+wget https://updates.jenkins-ci.org/latest/jenkins.war -O $HOME/tomcat/webapps/ROOT.war
 
 # starting tomcat server.
-sh $HOME/jenkins/tomcat/bin/startup.sh
+sh $HOME/tomcat/bin/startup.sh
 
 # jenkins unlock initial admin password.
 ##sudo cat /root/.jenkins/secrets/initialAdminPassword
