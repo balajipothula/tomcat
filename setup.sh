@@ -8,10 +8,10 @@
 apt update
 
 # upgrading packages.
-sudo DEBIAN_FRONTEND=noninteractive apt -y upgrade
+DEBIAN_FRONTEND=noninteractive apt -y upgrade
 
 # installing openjdk8.
-sudo apt install -y openjdk-8-jre
+apt install -y openjdk-8-jre
 
 # starting tomcat server.
 sh $HOME/tomcat/bin/startup.sh
